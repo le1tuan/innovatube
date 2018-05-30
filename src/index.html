@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="../css/index.css">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Innovatube</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <header class="header">
+      <div class="header__navigator">
+        <i class="fas fa-bars header__navigator--white"></i>
+      </div>
+      <div class="header__logo">
+        <img src="../00_materials/logo-data/logo.svg" />
+      </div>
+    </header>
+    <div class="notification">
+      <h3 class="notification--orange"><i class="far fa-check-circle"></i> Message has been sent !</h3>
+    </div>
+    <section class="section">
+      <div class="section__description">
+        <h2>Join our team !</h2>
+        <p class="section__description--blue">Please let us know a bit about you :)</p>
+      </div>
+      <div class="section__input--container">
+        <div class="section__title">
+          <label class="section__label margin-tb__10">First Name</label>
+          <div class="section__required margin-tb__10">Required</div>
+        </div>
+        <div class="clear-float"></div>
+        <input class="section__input margin-tb__10" type="text" placeholder="First Name" />
+        <div class="section__error margin-tb__10">
+          <p>Input your first name.</p>
+        </div>
+      </div>
+      <div class="section__input--container">
+        <div class="section__title">
+          <label class="section__label margin-tb__10">Last Name</label>
+          <div class="section__required margin-tb__10">Required</div>
+        </div>
+        <input class="section__input margin-tb__10" type="text" placeholder="Last Name" />
+        <div class="section__error margin-tb__10">
+          <p>Input your last name.</p>
+        </div>
+      </div>
+      <div class="section__input--container">
+        <div class="section__title">
+          <label class="section__label margin-tb__10">Where do you live?</label>
+        </div>
+        <div class="section__checkbox margin-tb__10">
+          <div class="section__checkbox--radio margin-tb__10">
+            <input type="radio" /> <label class="section__label" >VietNam</label>
+          </div>
+          <div class="section__checkbox--radio margin-tb__10">
+            <input type="radio" /> <label class="section__label">Others</label>
+          </div>
+        </div>
+        <select class="section__select margin-tb__10">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </div>
+      <div class="section__input--container">
+        <div class="section__title">
+          <label class="section__label margin-tb__10">When were you born?</label>
+        </div>
+        <select class="section__select margin-tb__10">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </div>
+      <div class="section__input--container">
+        <div class="section__title">
+          <label class="section__label margin-tb__10">And, Your phone number?</label>
+        </div>
+        <input class="section__input margin-tb__10" type="number" placeholder="Input Your Number" />
+        <div class="section__warn margin-tb__10">
+          <p>Please make sure your phone is active. We will contact you over the phone in case of we really really want to talk with you immidiately because you are so talented!! :)</p>
+        </div>
+      </div>
+      <div class="section__input--container">
+        <div class="section__title">
+          <label class="section__label margin-tb__10">Let us kwnow your current situation.</label>
+          <div class="section__required margin-tb__10">Required</div>
+        </div>
+        <input class="section__input margin-tb__10" type="number" placeholder="Input Your Number" />
+        <div class="section__warn margin-tb__10">
+          <p>Please make sure your phone is active. We will contact you over the phone in case of we really really want to talk with you immidiately because you are so talented!! :)</p>
+        </div>
+        <div class="section__checkbox--radio margin-tb__10">
+          <input type="radio" /> <label class="section__label" >Yes! I'm 100% looking for new opportunities</label>
+        </div>
+         <div class="section__checkbox--radio margin-tb__10">
+          <input type="radio" /> <label class="section__label" >I want to grab some coffee together and want to hear more about innovatube</label>
+        </div>
+         <div class="section__checkbox--radio margin-tb__10">
+          <input type="radio" /> <label class="section__label" >I want to apply for innovatube immidiately!</label>
+        </div>
+         <div class="section__checkbox--radio margin-tb__10">
+          <input type="radio" /> <label class="section__label" >I want to visit innovatube innovative office!</label>
+        </div>
+         <div class="section__checkbox--radio margin-tb__10">
+          <input type="radio" /> <label class="section__label" >Other</label>
+        </div>
+      </div>
+      <div class="section__input--container">
+        <div class="section__title">
+          <label class="section__label margin-tb__10">If you checked "Others", could you tell me about it more specific?</label>
+        </div>
+        <textarea class="section__texarea" placeholder="Your specific reason why do you want to connect with innovatube"></textarea>
+      </div>
+      <div class="section__input--container">
+        <button class="section__button--active">Send it to Innovatube</button>
+      </div>
+    </section>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

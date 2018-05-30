@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+}
+
+.header {
+  background: #1f1295;
+  height: 75px;
+  display: flex;
+  flex-wrap: nowrap;
+  &__navigator {
+    color: white;
+    display: inline-block;
+    position: relative;
+    width: 75px;
+    height: 100%;
+    border-right: 1px solid white;
+    font-size: 30px; 
+    text-align: center;
+    left: 0;
+    top: 0;
+    &--white {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
+  }
+  &__logo {
+    width: 100%;
+    position: absolute;
+    img {
+      width: 100%;
+      max-height: 75px;
+    }
+  }
+}
+
+.notification {
+  text-align: left;
+  padding: 20px;
+  background: #FF601C;
+  color: white;
+}
+
+.section {
+  background: #F7F4ED;
+  padding: 0 15px 15px 15px;
+  
+  &__description {
+    background: white;
+    text-align: center;
+    padding-bottom: 30px;
+    &--blue {
+      color: #88C8D1;
+      font-size: 13px;
+      font-weight: bold;
+    }
+  }
+  &__input--container {
+    background: white;
+    margin-top: 2px;
+    padding: 10px 10px;
+  }
+  &__label {
+    
+    font-weight: bold;
+  }
+  &__required {
+    
+    background: #FF601C;
+    border-radius: 3px;
+    padding: 5px;
+    color: white;
+  }
+  &__title {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  &__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #57FAB9;
+    border-radius: 2px;
+  }
+  &__error {
+    background: #1f1295;
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
+  }
+  &__checkbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    &--radio {
+      background: #1f1295;
+      color: white; 
+      padding: 10px;
+      flex: 0 1 40%;
+      border-radius: 3px;
+    }
+  }
+  &__select {
+    width: 100%;
+    padding: 10px;
+  }
+  &__warn {
+    background: #F7F4ED;
+    padding: 10px;
+    line-height: 1.6;
+    text-align: left;
+  }
+  &__texarea {
+    resize: none;
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+  }
+  &__button {
+    width: 100%;
+    
+    &--active {
+      width: 100%;
+      background: #1f1295;
+      color: white; 
+      border: 1px solid #1f1295;
+      padding: 10px;
+      text-align: center;
+      border-radius: 3px;
+    }
+  }
+}
+.clear-float {
+  clear: both;
+}
+
+.margin-tb__10 {
+  margin: 10px 0;
+}
