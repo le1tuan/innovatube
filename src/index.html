@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -25,117 +28,274 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <header class="header">
-      <div class="header__navigator">
-        <i class="fas fa-bars header__navigator--white"></i>
-      </div>
-      <div class="header__logo">
-        <img src="../00_materials/logo-data/logo.svg" />
-      </div>
-    </header>
-    <div class="notification">
-      <h3 class="notification--orange"><i class="far fa-check-circle"></i> Message has been sent !</h3>
-    </div>
-    <section class="section">
-      <div class="section__description">
-        <h2>Join our team !</h2>
-        <p class="section__description--blue">Please let us know a bit about you :)</p>
-      </div>
-      <div class="section__input--container">
-        <div class="section__title">
-          <label class="section__label margin-tb__10">First Name</label>
-          <div class="section__required margin-tb__10">Required</div>
+    <div id="root"></div>
+    <script type="text/babel">
+      const VIETNAM = 'VietNam'
+      const OTHERS = 'Others'
+      const SITUATIONDATA = [
+        {
+          id: '1',
+          content: "Yes! I'm 100% looking for new opportunities",
+        },
+        {
+          id: '2',
+          content: "I want to grab some coffee together and want to hear more about innovatube",
+        },
+        {
+          id: '3',
+          content: "I want to apply for innovatube immidiately!"
+        },
+        {
+          id: '4',
+          content: "I want to visit innovatube innovative office!"
+        },
+        {
+          id: '5',
+          content: 'Other'
+        }
+      ]
+      class Header extends React.Component {
+        render() {
+          return (
+            <header className="header">
+              <div className="header__navigator">
+                <i className="fas fa-bars header__navigator--white"></i>
+              </div>
+              <div className="header__logo">
+                <img src="../00_materials/logo-data/logo.svg" />
+              </div>
+            </header>
+          )
+        }
+      }
+      const Notification = () => (
+        <div className="notification">
+          <h3 className="notification--orange"><i className="far fa-check-circle"></i> Message has been sent !</h3>
         </div>
-        <div class="clear-float"></div>
-        <input class="section__input margin-tb__10" type="text" placeholder="First Name" />
-        <div class="section__error margin-tb__10">
-          <p>Input your first name.</p>
-        </div>
-      </div>
-      <div class="section__input--container">
-        <div class="section__title">
-          <label class="section__label margin-tb__10">Last Name</label>
-          <div class="section__required margin-tb__10">Required</div>
-        </div>
-        <input class="section__input margin-tb__10" type="text" placeholder="Last Name" />
-        <div class="section__error margin-tb__10">
-          <p>Input your last name.</p>
-        </div>
-      </div>
-      <div class="section__input--container">
-        <div class="section__title">
-          <label class="section__label margin-tb__10">Where do you live?</label>
-        </div>
-        <div class="section__checkbox margin-tb__10">
-          <div class="section__checkbox--radio margin-tb__10">
-            <input type="radio" /> <label class="section__label" >VietNam</label>
-          </div>
-          <div class="section__checkbox--radio margin-tb__10">
-            <input type="radio" /> <label class="section__label">Others</label>
-          </div>
-        </div>
-        <select class="section__select margin-tb__10">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
-        </select>
-      </div>
-      <div class="section__input--container">
-        <div class="section__title">
-          <label class="section__label margin-tb__10">When were you born?</label>
-        </div>
-        <select class="section__select margin-tb__10">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
-        </select>
-      </div>
-      <div class="section__input--container">
-        <div class="section__title">
-          <label class="section__label margin-tb__10">And, Your phone number?</label>
-        </div>
-        <input class="section__input margin-tb__10" type="number" placeholder="Input Your Number" />
-        <div class="section__warn margin-tb__10">
-          <p>Please make sure your phone is active. We will contact you over the phone in case of we really really want to talk with you immidiately because you are so talented!! :)</p>
-        </div>
-      </div>
-      <div class="section__input--container">
-        <div class="section__title">
-          <label class="section__label margin-tb__10">Let us kwnow your current situation.</label>
-          <div class="section__required margin-tb__10">Required</div>
-        </div>
-        <input class="section__input margin-tb__10" type="number" placeholder="Input Your Number" />
-        <div class="section__warn margin-tb__10">
-          <p>Please make sure your phone is active. We will contact you over the phone in case of we really really want to talk with you immidiately because you are so talented!! :)</p>
-        </div>
-        <div class="section__checkbox--radio margin-tb__10">
-          <input type="radio" /> <label class="section__label" >Yes! I'm 100% looking for new opportunities</label>
-        </div>
-         <div class="section__checkbox--radio margin-tb__10">
-          <input type="radio" /> <label class="section__label" >I want to grab some coffee together and want to hear more about innovatube</label>
-        </div>
-         <div class="section__checkbox--radio margin-tb__10">
-          <input type="radio" /> <label class="section__label" >I want to apply for innovatube immidiately!</label>
-        </div>
-         <div class="section__checkbox--radio margin-tb__10">
-          <input type="radio" /> <label class="section__label" >I want to visit innovatube innovative office!</label>
-        </div>
-         <div class="section__checkbox--radio margin-tb__10">
-          <input type="radio" /> <label class="section__label" >Other</label>
-        </div>
-      </div>
-      <div class="section__input--container">
-        <div class="section__title">
-          <label class="section__label margin-tb__10">If you checked "Others", could you tell me about it more specific?</label>
-        </div>
-        <textarea class="section__texarea" placeholder="Your specific reason why do you want to connect with innovatube"></textarea>
-      </div>
-      <div class="section__input--container">
-        <button class="section__button--active">Send it to Innovatube</button>
-      </div>
-    </section>
+      );
+      class Form extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            firstName: '',
+            lastName: '',
+            country: '',
+            isDisplayCountryOther: false,
+            birthDay: '',
+            phoneNumber: '',
+            situation: '',
+            reason: '',
+          }
+        }
+        handleOnChange = (name) => (e) => {
+          const data = e.target.value;
+          this.setState(() => {
+            return {
+              [name]: data,
+            }
+          })
+        }
+        handleCountryInput = (name) => (e) => {
+          const data = e.target.value;
+          this.setState(() => {
+            return {
+              isDisplayCountryOther: name !== VIETNAM,
+            }
+          }, () => {
+            if (name === VIETNAM) {
+              this.radio1.classList.add('section__checkbox--radio--active')
+              this.radio2.classList.remove('section__checkbox--radio--active')
+            } else {
+              this.radio2.classList.add('section__checkbox--radio--active')
+              this.radio1.classList.remove('section__checkbox--radio--active')
+            }
+          })
+        }
+        handleActiveReasonInput = (value) => {
+          if (this.state.situation === value) {
+            return 'section__checkbox--radio--active';
+          }
+          return '';
+        }
+        render() {
+          return (
+            <React.Fragment>
+              <div className="section__input--container">
+                <div className="section__title">
+                  <label className="section__label margin-tb__10">First Name</label>
+                  <div className="section__required margin-tb__10">Required</div>
+                </div>
+                <div className="clear-float"></div>
+                <input className="section__input margin-tb__10" name="firstname" type="text" placeholder="First Name" onChange={this.handleOnChange('firstName')} />
+                <div className="section__error margin-tb__10">
+                  <p>Input your first name.</p>
+                </div>
+              </div>
+              <div className="section__input--container">
+                <div className="section__title">
+                  <label className="section__label margin-tb__10">Last Name</label>
+                  <div className="section__required margin-tb__10">Required</div>
+                </div>
+                <input className="section__input margin-tb__10" name="lastname" type="text" placeholder="Last Name" onChange={this.handleOnChange('lastName')}/>
+                <div className="section__error margin-tb__10">
+                  <p>Input your last name.</p>
+                </div>
+              </div>
+              <div className="section__input--container">
+                <div className="section__title">
+                  <label className="section__label margin-tb__10">Where do you live?</label>
+                </div>
+                <div className="section__checkbox margin-tb__10">
+                  <div className={`section__checkbox--radio margin-tb__10`} ref={(node) => this.radio1 = node}>
+                    <label className="section__label" >
+                      <input
+                        type="radio"
+                        name="country"
+                        value="VietNam"
+                        onChange={this.handleCountryInput(VIETNAM)}
+                      />{VIETNAM}
+                    </label>
+                  </div>
+                  <div className={`section__checkbox--radio margin-tb__10`} ref={(node) => this.radio2 = node}>
+                    <label className="section__label">
+                      <input
+                        type="radio"
+                        name="country"
+                        value="Others"
+                        onChange={this.handleCountryInput(OTHERS)}
+                      />
+                      Others
+                    </label>
+                  </div>
+                </div>
+                <select
+                  className="section__select margin-tb__10"
+                  disabled={(this.state.isDisplayCountryOther) ? false : true}
+                  onChange={this.handleOnChange('country')}
+                  value={this.state.country}
+                >
+                  <option value="Thailand">Thailand</option>
+                  <option value="China">China</option>
+                  <option value="America">America</option>
+                </select>
+              </div>
+              <div className="section__input--container">
+                <div className="section__title">
+                  <label className="section__label margin-tb__10">When were you born?</label>
+                </div>
+                <select
+                  className="section__select margin-tb__10"
+                  onChange={this.handleOnChange('birthDay')}
+                >
+                  <option value="volvo">1995</option>
+                  <option value="saab">1994</option>
+                  <option value="mercedes">1993</option>
+                  <option value="audi">1992</option>
+                </select>
+              </div>
+              <div className="section__input--container">
+                <div className="section__title">
+                  <label className="section__label margin-tb__10">And, Your phone number?</label>
+                </div>
+                <input className="section__input margin-tb__10" type="number" placeholder="Input Your Number" onChange={this.handleOnChange('phoneNumber')}/>
+                <div className="section__warn margin-tb__10">
+                  <p>Please make sure your phone is active. We will contact you over the phone in case of we really really want to talk with you immidiately because you are so talented!! :)</p>
+                </div>
+              </div>
+              <div className="section__input--container">
+                <div className="section__title">
+                  <label className="section__label margin-tb__10">Let us kwnow your current situation.</label>
+                  <div className="section__required margin-tb__10">Required</div>
+                </div>
+                {
+                  SITUATIONDATA.map((item, index) => {
+                    return (
+                    <div key={index} className={`section__checkbox--radio margin-tb__10 ${this.handleActiveReasonInput(item.id)}`}>
+                      <label className="section__label" ><input type="radio" name="reason" value={item.id} onChange={this.handleOnChange('situation')}/> {item.content}</label>
+                    </div>
+                    )
+                })
+                }
+              </div>
+              <div className="section__input--container">
+                <div className="section__title">
+                  <label className="section__label margin-tb__10">If you checked "Others", could you tell me about it more specific?</label>
+                </div>
+                <textarea
+                  className="section__textarea"
+                  placeholder="Your specific reason why do you want to connect with innovatube"
+                  disabled={this.state.situation === '5' ? false : true}
+                  onChange={this.handleOnChange('reason')}
+                >
+                </textarea>
+              </div>
+              <div className="section__input--container">
+                <div className="section__button--active  margin-tb__10"><label className="section__label">Send it to Innovatube</label></div>
+              </div>              
+            </React.Fragment>
+          )
+        }
+      }
+      class FormContainer extends React.Component {
+        render() {
+          return (
+          <React.Fragment>
+            <div className="section__description">
+              <h2>Join our team !</h2>
+              <p className="section__description--blue">Please let us know a bit about you :)</p>
+            </div>
+            <Form /> 
+          </React.Fragment>
+          )
+        }
+      }
+      class Footer extends React.Component {
+        render() {
+          return (
+            <React.Fragment>
+              <div className="breadcrumb">
+                <span><p className="breadcrumb__text text--green">Home > </p><p className="breadcrumb__text">Join our team!</p></span>
+              </div>
+              <div className="goup">
+                <div className="goup__icon"><i className="fas fa-arrow-up"></i></div>
+              </div>
+              <footer className="footer">
+                <div className="footer__logo">
+                  <img src="../00_materials/logo-data/logo.svg" />
+                </div>
+                <div className="footer__slogan">
+                  <div className="footer__slogan--wrapper">
+                    <h3 className="text--green footer__slogan--heading">Our Vision</h3>
+                    <p>We aim to become the worldwide leading force when it comes to providing tech solutions and helping to accelerate global innovation.</p>
+                  </div>
+                  <div className="footer__slogan--wrapper padding-left__10">
+                    <h3 className="text--green footer__slogan--heading">Our Mission</h3>
+                    <p>Our mission is to help start-up companies and agile minded organizations to cut down the time and cost of developing a new product.</p>
+                  </div>
+                </div>
+                <div className="footer__copyright"><p>Copyright <i className="far fa-copyright"></i> 2016 Innovatube Solutions Ltd. All rights reserved.</p></div>
+              </footer>
+            </React.Fragment>
+          )
+        }
+      }
+      class App extends React.Component {
+        render() {
+          return (
+            <React.Fragment>
+              <Header />
+              <Notification /> 
+              <FormContainer />
+              <Footer />
+            </React.Fragment>
+          )
+        }
+      }
+      ReactDOM.render(
+        <App />,
+        document.getElementById('root')
+      );
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
