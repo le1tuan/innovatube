@@ -57,6 +57,9 @@
     margin-top: 2px;
     padding: 10px 10px; }
   .section__label {
+    display: block;
+    width: 100%;
+    height: 100%;
     font-weight: bold; }
   .section__required {
     background: #FF601C;
@@ -79,17 +82,18 @@
   .section__input:focus {
     border-color: #57FAB9; }
   .section__error {
-    background: #1f1295;
+    background: #fa3e3e;
     color: white;
     padding: 10px;
-    border-radius: 3px; }
+    border-radius: 3px;
+    margin: 0 10px 0 10px; }
   .section__checkbox {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between; }
     .section__checkbox--radio {
-      color: 'black';
+      color: black;
       padding: 10px;
       flex: 0 1 40%;
       border-radius: 3px; }
@@ -183,6 +187,9 @@
 
 .margin-tb__10 {
   margin: 10px 0; }
+
+.margin__10 {
+  margin: 10px; }
 
 .padding-left__10 {
   padding-left: 10px; }

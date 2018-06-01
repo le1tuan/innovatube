@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="../js/isEmpty.js"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -53,7 +54,24 @@
           id: '5',
           content: 'Other'
         }
-      ]
+      ];
+      const KEYS = ['firstName', 'lastName', 'situation'];
+      const mapKeyToName = (key) => {
+        if (key === 'firstName') {
+          return 'First Name'
+        } else if (key === 'lastName') {
+          return 'Last Name'
+        } else if (key === 'country') {
+          return 'Country'
+        } else if (key === 'birthDay') {
+          return 'Birth Day'
+        } else if (key === 'phoneNumber') {
+          return 'Phone Number'
+        } else if (key === 'situation') {
+          return 'Situation'
+        }
+        return ''
+      }
       class Header extends React.Component {
         render() {
           return (
@@ -68,12 +86,19 @@
           )
         }
       }
-      const Notification = () => (
-        <div className="notification">
+      const Notification = (props) => (
+        <React.Fragment>
+        {props.isDisplayNotification ? <div className="notification">
           <h3 className="notification--orange"><i className="far fa-check-circle"></i> Message has been sent !</h3>
-        </div>
+        </div> : <div></div>}
+        </React.Fragment>
       );
-      class Form extends React.Component {
+      const ErrorComponent = (props) => (
+        <div className="section__error margin__10">
+          <p>{props.error}</p>
+        </div>
+      )
+      class Form extends React.PureComponent {
         constructor(props) {
           super(props);
           this.state = {
@@ -85,6 +110,7 @@
             phoneNumber: '',
             situation: '',
             reason: '',
+            errors: {},
           }
         }
         handleOnChange = (name) => (e) => {
@@ -100,6 +126,7 @@
           this.setState(() => {
             return {
               isDisplayCountryOther: name !== VIETNAM,
+              country: name === VIETNAM ? 'VietNam' : 'Thailand'
             }
           }, () => {
             if (name === VIETNAM) {
@@ -117,7 +144,48 @@
           }
           return '';
         }
+        validateInput = () => {
+          const errors = Object.create(null);
+          
+          KEYS.map((item) => {
+            if (this.state[item] === '') {
+              errors[item] = `${mapKeyToName(item)} must not be empty`;
+            }
+          })
+          if (window.isEmpty(errors)) {
+            this.setState(() => ({
+              firstName: '',
+              lastName: '',
+              country: '',
+              isDisplayCountryOther: false,
+              birthDay: '',
+              phoneNumber: '',
+              situation: '',
+              reason: '',
+              errors: {},
+            }), () => {
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              });
+              this.radio1.classList.remove('section__checkbox--radio--active');
+              this.radio2.classList.remove('section__checkbox--radio--active');
+              this.props.displayNotification();
+            })
+          } else {
+            this.setState(() => ({
+              errors: errors
+            }), () => {
+              this.props.hideNotification();
+            })
+          }
+        }
+        doSubmit = (e) => {
+          e.preventDefault();
+          this.validateInput();
+        }
         render() {
+          console.log(this.state.country !== 'VIETNAM' && this.state.country !== '');
           return (
             <React.Fragment>
               <div className="section__input--container">
@@ -126,20 +194,28 @@
                   <div className="section__required margin-tb__10">Required</div>
                 </div>
                 <div className="clear-float"></div>
-                <input className="section__input margin-tb__10" name="firstname" type="text" placeholder="First Name" onChange={this.handleOnChange('firstName')} />
-                <div className="section__error margin-tb__10">
-                  <p>Input your first name.</p>
-                </div>
+                <input
+                  className="section__input margin-tb__10"
+                  name="firstname"
+                  type="text"
+                  placeholder="First Name"
+                  onChange={this.handleOnChange('firstName')}
+                  value={this.state.firstName}
+                />
               </div>
               <div className="section__input--container">
                 <div className="section__title">
                   <label className="section__label margin-tb__10">Last Name</label>
                   <div className="section__required margin-tb__10">Required</div>
                 </div>
-                <input className="section__input margin-tb__10" name="lastname" type="text" placeholder="Last Name" onChange={this.handleOnChange('lastName')}/>
-                <div className="section__error margin-tb__10">
-                  <p>Input your last name.</p>
-                </div>
+                <input
+                  className="section__input margin-tb__10"
+                  name="lastname"
+                  type="text"
+                  placeholder="Last Name"
+                  onChange={this.handleOnChange('lastName')}
+                  value={this.state.lastName}
+                />
               </div>
               <div className="section__input--container">
                 <div className="section__title">
@@ -151,8 +227,9 @@
                       <input
                         type="radio"
                         name="country"
-                        value="VietNam"
+                        value="VIETNAM"
                         onChange={this.handleCountryInput(VIETNAM)}
+                        checked={this.state.country === VIETNAM}
                       />{VIETNAM}
                     </label>
                   </div>
@@ -162,6 +239,7 @@
                         type="radio"
                         name="country"
                         value="Others"
+                        checked={this.state.country !== VIETNAM && this.state.country !== ''}
                         onChange={this.handleCountryInput(OTHERS)}
                       />
                       Others
@@ -197,7 +275,13 @@
                 <div className="section__title">
                   <label className="section__label margin-tb__10">And, Your phone number?</label>
                 </div>
-                <input className="section__input margin-tb__10" type="number" placeholder="Input Your Number" onChange={this.handleOnChange('phoneNumber')}/>
+                <input
+                  className="section__input margin-tb__10"
+                  type="number"
+                  placeholder="Input Your Number"
+                  onChange={this.handleOnChange('phoneNumber')}
+                  value={this.state.phoneNumber}
+                />
                 <div className="section__warn margin-tb__10">
                   <p>Please make sure your phone is active. We will contact you over the phone in case of we really really want to talk with you immidiately because you are so talented!! :)</p>
                 </div>
@@ -211,7 +295,15 @@
                   SITUATIONDATA.map((item, index) => {
                     return (
                     <div key={index} className={`section__checkbox--radio margin-tb__10 ${this.handleActiveReasonInput(item.id)}`}>
-                      <label className="section__label" ><input type="radio" name="reason" value={item.id} onChange={this.handleOnChange('situation')}/> {item.content}</label>
+                      <label className="section__label" >
+                        <input
+                          type="radio"
+                          name="reason" 
+                          value={item.id}
+                          onChange={this.handleOnChange('situation')}
+                          checked={this.state.situation === item.id}
+                        />
+                        {item.content}</label>
                     </div>
                     )
                 })
@@ -229,22 +321,50 @@
                 >
                 </textarea>
               </div>
+              <div>
+                {
+                  KEYS.map((item, index) => {
+                    if (this.state.errors && this.state.errors[item]) {
+                      return <ErrorComponent error={this.state.errors[item]} key={index} />
+                    }
+                  })
+                }
+              </div>
               <div className="section__input--container">
-                <div className="section__button--active  margin-tb__10"><label className="section__label">Send it to Innovatube</label></div>
+                <div className="section__button--active  margin-tb__10" onClick={this.doSubmit}>
+                  <label className="section__label">Send it to Innovatube</label>
+                </div>
               </div>              
             </React.Fragment>
           )
         }
       }
       class FormContainer extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            isDisplayNotification : false,
+          }
+        }
+        displayNotification = () => {
+          this.setState({
+            isDisplayNotification : true,
+          })
+        }
+        hideNotification = () => {
+          this.setState({
+            isDisplayNotification : false,
+          })
+        }
         render() {
           return (
           <React.Fragment>
+            <Notification isDisplayNotification={this.state.isDisplayNotification} /> 
             <div className="section__description">
               <h2>Join our team !</h2>
               <p className="section__description--blue">Please let us know a bit about you :)</p>
             </div>
-            <Form /> 
+            <Form displayNotification={this.displayNotification} hideNotification={this.hideNotification} /> 
           </React.Fragment>
           )
         }
@@ -284,7 +404,6 @@
           return (
             <React.Fragment>
               <Header />
-              <Notification /> 
               <FormContainer />
               <Footer />
             </React.Fragment>
